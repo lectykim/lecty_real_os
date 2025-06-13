@@ -1,0 +1,1 @@
+extern void trap_init(void);

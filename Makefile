@@ -51,4 +51,5 @@ clean:
 boot/head.o: boot/head.s
 
 ### Dependencies
-init/main.o: init/main.c include/asm/io.h
+init/main.o: init/main.c include/asm/io.h include/etc/simple_print.h \
+	include/asm/system.h include/linux/sched.h
