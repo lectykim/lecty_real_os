@@ -3,6 +3,8 @@
     "files.associations": {
         "simple_print.h": "c",
         "system.h": "c",
-        "head.h": "c"
+        "head.h": "c",
+        "sched.h": "c",
+        "io.h": "c"
     }
 }

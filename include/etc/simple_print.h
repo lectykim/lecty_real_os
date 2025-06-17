@@ -1,3 +1,6 @@
+#ifndef _SIMPLE_PRINT_H_
+#define _SIMPLE_PRINT_H_
+
 #include <asm/io.h>
 
 #define VGA_TEXT_BUF (volatile unsigned char *)0xB8000
@@ -8,11 +11,6 @@
 
 static unsigned char cursor_row =0;
 static unsigned char cursor_col = 0;
-long user_stack [ 4096>>2 ] ;
-struct {
-	long * a;
-	short b;
-	} stack_start = { & user_stack [4096>>2] , 0x10 };
 static volatile unsigned short* const vga_buffer = (volatile unsigned short*)VGA_TEXT_BUF;
 
 
@@ -53,7 +51,7 @@ static void move_hardware_cursor(void)
     outb(0x3D5, (unsigned char)((pos >> 8) & 0xFF));
 }
 
-void simple_print(const char* str)
+static void simple_print(const char* str)
 {
     while(*str){
         char c = *str++;
@@ -74,3 +72,5 @@ void simple_print(const char* str)
     }
     move_hardware_cursor();
 }
+
+#endif

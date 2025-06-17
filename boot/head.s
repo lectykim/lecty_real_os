@@ -58,7 +58,7 @@ setup_idt:
     movw %dx,%ax
     movw $0x8E00,%dx
 
-    lea _idt,%edi
+    lea idt,%edi
     mov $256,%ecx
 rp_sidt:
     movl %eax, (%edi)
@@ -130,10 +130,10 @@ setup_paging:
     xorl %eax,%eax
     xorl %edi,%edi
     cld;rep;stosl
-    movl $pg0+7,_pg_dir
-    movl $pg1+7,_pg_dir+4
-    movl $pg2+7,_pg_dir+8
-    movl $pg3+7,_pg_dir+12
+    movl $pg0+7,pg_dir
+    movl $pg1+7,pg_dir+4
+    movl $pg2+7,pg_dir+8
+    movl $pg3+7,pg_dir+12
     movl $pg3+4092,%edi
     movl $0xfff007,%eax
     std

@@ -1,3 +1,6 @@
+#include <linux/sched.h>
+#include <linux/head.h>
+
 #define LOW_MEM 0x100000
 #define PAGING_MEMORY (15*1024*1024)
 #define PAGING_PAGES (PAGING_MEMORY>>12)

@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-m32 -O -Wall -fstrength-reduce -fomit-frame-pointer \
-	-finline-functions -nostdinc -I../include
+	-finline-functions -fno-pie -nostdinc -I../include
 AS	=as
 LD	=ld
 LDFLAGS=-m elf_i386 -Ttext=0x0
@@ -16,7 +16,7 @@ LDFLAGS=-m elf_i386 -Ttext=0x0
 	$(CC) $(CFLAGS) \
 	-c -o $*.o $<
 
-OBJS= traps.o asm.o
+OBJS= traps.o asm.o simple_print.o
 
 all: kernel.o
 
@@ -26,5 +26,5 @@ kernel.o: $(OBJS)
 clean:
 	rm -f *.o *.a
 
-#traps.s traps.o : traps.c ../include/linux/head.h ../include/etc/simple_print.h \
-#	../include/asm/system.h
+traps.s traps.o : traps.c ../include/linux/head.h ../include/etc/simple_print.h \
+	../include/asm/system.h

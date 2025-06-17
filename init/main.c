@@ -1,12 +1,16 @@
 #include <asm/io.h>
 #include <linux/sched.h>
 #include <etc/simple_print.h>
+#include <linux/head.h>
 
-
-#define EXT_MEM_K (*(unsigned short*)0x90002)
-#define DRIVE_INFO(*(struct drive_info *)0x90080)
-#define ORIG_ROOT_DEV(*(unsigned short *)0x901FC)
-
+#define EXT_MEM_K (*(unsigned short *)0x90002)
+#define DRIVE_INFO (*(struct drive_info *)0x90080)
+#define ORIG_ROOT_DEV (*(unsigned short *)0x901FC)
+long user_stack [ 4096>>2 ] ;
+struct {
+	long * a;
+	short b;
+	} stack_start = { & user_stack [4096>>2] , 0x10 };
 static long memory_end=0;
 static long buffer_memory_end=0;
 static long main_memory_start=0;
@@ -34,11 +38,17 @@ void main(void)
 		buffer_memory_end = 1*1024*1024;
     main_memory_start = buffer_memory_end;
     mem_init(main_memory_start,memory_end);
+    
     trap_init();
+
+    
     //인터럽트 내보기, division-by-zero, overflow
     char overflow = 244+244;
+    
     char division_by_zero = 10/0;
+
     while(1){
             
     }
+    
 }

@@ -21,6 +21,8 @@ void reserved(void);
 //void parallel_interrupt(void);
 void irq13(void);
 
+
+
 void do_double_fault(long esp, long error_code)
 {
     simple_print("double_fault");
@@ -34,6 +36,10 @@ void do_general_protection(long esp, long error_code)
 void do_divide_error(long esp, long error_code)
 {
 	simple_print("divide_error");
+	while(1)
+	{
+		
+	}
 }
 
 void do_int3(long * esp, long error_code,

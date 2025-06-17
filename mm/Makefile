@@ -3,7 +3,7 @@ CFLAGS=-m32 -O -Wall -fstrength-reduce -fomit-frame-pointer \
 	-finline-functions -nostdinc -I../include
 AS	=as
 LD	=ld
-
+LDFLAGS=-m elf_i386 -Ttext=0x0
 .c.o:
 	$(CC) $(CFLAGS) \
 	-c -o $*.o $<
@@ -18,7 +18,7 @@ OBJS	=memory.o
 
 all: mm.o
 mm.o: $(OBJS)
-	$(LD) -r -o mm.o $(OBJS)
+	$(LD) $(LDFLAGS) -r -o mm.o $(OBJS)
 
 clean:
 	rm -f *.o *.a
