@@ -5,6 +5,9 @@
         "system.h": "c",
         "head.h": "c",
         "sched.h": "c",
-        "io.h": "c"
+        "io.h": "c",
+        "string.h": "c",
+        "stdarg.h": "c",
+        "time.h": "c"
     }
 }
