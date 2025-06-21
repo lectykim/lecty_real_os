@@ -6,6 +6,9 @@
 #define EXT_MEM_K (*(unsigned short *)0x90002)
 #define DRIVE_INFO (*(struct drive_info *)0x90080)
 #define ORIG_ROOT_DEV (*(unsigned short *)0x901FC)
+
+static inline _syscall0(int,fork);
+
 long user_stack [ 4096>>2 ] ;
 struct {
 	long * a;
@@ -19,6 +22,11 @@ struct drive_info {char dummy[32];} drive_info;
 extern void mem_init(long start,long end);
 extern void blk_dev_init(void);
 static void time_init(void)
+extern void hd_init(void);
+extern void floppy_init(void);
+extern void rd_init(long mem_start,int length);
+extern long kernel_mktime(struct tm * tm);
+extern long startup_time;
 /*
 0x80은 0x1000 0000이다. 
 이를 설정해두는 이유는,  NMI를 비활성화 하기 위함이다.
